@@ -1,47 +1,124 @@
+/* html {
+    background-image: url(points30.png);
+    
+    background-repeat: repeat;
+}   */
+html {
+    background-image: url(assets/background.avif);
+    
+    background-repeat: repeat;
+    background-size: 20%;
+}  
+
 body {
     font-family: Arial, sans-serif;
 }
 
 #quiz-container {
     max-width: 600px;
+    min-height: 300px;
     margin: auto;
     margin-top: 100px;
-    padding: 20px;
-    border: 1px solid #ccc;
+    padding: 30px;
+    border: 1px solid rgb(128, 101, 149);;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: rgb(226, 208, 241);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 #question-counter {
     text-align: right;
-    margin: 20px 0;
+    font-size: large;
+    margin: 10px 0;
 }
 
 #question-container {
-    margin: 20px;
-
+    color: rgb(44, 30, 54);
 }
 
 #question {
     text-align: center;
-    margin-bottom: 20px;
+    min-height: 60px;
+    font-size: larger;
+    margin-top: 30px;
 }
 
-#answer-options {
+.answers {
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
     grid-auto-rows: auto;
 }
 
+.answer.correct {
+    background-color: rgb(82, 230, 82);
+    color: rgb(44, 30, 54);
+}
+
+.answer.incorrect {
+    background-color: rgb(246, 65, 65);
+    color: rgb(44, 30, 54);
+}
+
 button {
+    font-size:small;
     margin: 5px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(128, 101, 149);
     border-radius: 5px;
-    background-color: #fff;
+    background-color: rgb(204, 173, 228);
     cursor: pointer;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+
 }
  #next-button{
-    margin: auto;
     display: block;
+    margin: auto;
+    margin-top: 30px;
+    border: 1px solid rgb(69, 54, 80);
+    background-color: rgb(147, 86, 193);
+    color: white;
  }
+
+ #next-button.disabled{
+    background-color: rgb(232, 214, 247);
+    border: 1px solid rgb(128, 116, 137, 0.978);
+    color: rgba(128, 116, 137, 0.978);
+ }
+
+ #result{
+    text-align: center;
+    margin-top: 120px;
+    font-size: xx-large;
+ }
+
+ #restart-button{
+    display: block;
+    margin: auto;
+    margin-top: 70px;
+    border: 1px solid rgb(69, 54, 80);
+    background-color: rgb(147, 86, 193);
+    color: white;
+ }
+
+ @media screen and (max-width: 600px) {
+    html {
+        background-size: 50%;
+    } 
+
+    #question-counter {
+        font-size:medium;
+    }
+
+    #question {
+        font-size:medium;
+    }
+
+    button {
+        font-size:x-small;
+    }
+
+    #result{
+        font-size:large;
+     }
+}
