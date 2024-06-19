@@ -57,14 +57,24 @@ body {
 
 button {
     font-size:small;
-    margin: 5px;
+    min-height: 40px;
+    margin: 7px;
     padding: 10px;
     border: 1px solid rgb(128, 101, 149);
     border-radius: 5px;
     background-color: rgb(204, 173, 228);
+    color: rgb(44, 30, 54);
     cursor: pointer;
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
 
+}
+
+button.disabled{
+    color: rgba(128, 116, 137, 0.978);
+}
+
+button:hover {
+    scale: 1.02;
 }
  #next-button{
     display: block;
@@ -79,8 +89,12 @@ button {
     background-color: rgb(232, 214, 247);
     border: 1px solid rgb(128, 116, 137, 0.978);
     color: rgba(128, 116, 137, 0.978);
+    cursor: default;
  }
 
+ #next-button.disabled:hover {
+    scale: 1;
+}
  #result{
     text-align: center;
     margin-top: 120px;
@@ -110,10 +124,18 @@ button {
     }
 
     button {
-        font-size:x-small;
+        font-size:smaller;
     }
 
     #result{
         font-size:large;
      }
+}
+@media screen and (max-width: 450px) {
+.answers {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    grid-auto-rows: auto;
+}
 }

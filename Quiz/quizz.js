@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.textContent = currentQuestion.answers[index];
             button.classList.remove('correct', 'incorrect');
             button.disabled = false;
+            button.classList.remove('disabled');
         });
         questionCounter.textContent = `${currentQuestionIndex + 1}/${questions.length}`;
         nextButton.disabled = true;
@@ -50,7 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
             answerButtons[currentQuestion.correct].classList.add('correct');
         }
 
-        answerButtons.forEach(button => button.disabled = true);
+        answerButtons.forEach(button => {
+            button.disabled = true;
+            button.classList.add('disabled');
+        });
         nextButton.disabled = false;
         nextButton.classList.remove('disabled');
     }
@@ -73,8 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
         resultElement.textContent = `Ваш результат: ${correctAnswers} из ${questions.length}`;
     }
 
+    function restartQuiz() {
+        currentQuestionIndex = 0;
+        correctAnswers = 0;
+        questionContainer.style.display = 'block';
+        nextButton.style.display = 'block';
+        questionCounter.style.display = 'block';
+        resultContainer.style.display = 'none';
+        showQuestion();
+    }
+
     answerButtons.forEach(button => button.addEventListener('click', selectAnswer));
     nextButton.addEventListener('click', nextQuestion);
+    restartButton.addEventListener('click', restartQuiz);
 
     showQuestion();
 });
