@@ -14,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentQuestionIndex = 0;
     let correctAnswers = 0;
-
+    
+    const startContainer = document.getElementById('start-container');
+    const startButton = document.getElementById('start-button');
+    const allQuestionCounter = document.getElementById('all-question-counter');
     const questionContainer = document.getElementById('question-container');
     const questionElement = document.getElementById('question');
     const answerButtons = document.querySelectorAll('.answer');
@@ -23,6 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultContainer = document.getElementById('result-container');
     const resultElement = document.getElementById('result');
     const restartButton = document.getElementById('restart-button');
+    
+    allQuestionCounter.textContent = `В викторине ${questions.length} вопросов на разные темы`;
+
+    startButton.addEventListener('click', startQuiz);
+    
+    function startQuiz() {
+        questionContainer.style.display = 'block';
+        nextButton.style.display = 'block';
+        
+
+        startContainer.style.display = 'none';
+        resultContainer.style.display = 'none';
+        showQuestion();
+    }
 
     function showQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
@@ -36,6 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
         questionCounter.textContent = `${currentQuestionIndex + 1}/${questions.length}`;
         nextButton.disabled = true;
         nextButton.classList.add('disabled');
+
+        
+        const isLast = currentQuestionIndex + 1 === questions.length;
+        if (isLast) {
+            nextButton.textContent = 'Узнать результат';
+        } else {
+            nextButton.textContent = 'Следующий вопрос';
+        }
     }
 
     function selectAnswer(event) {
@@ -55,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.disabled = true;
             button.classList.add('disabled');
         });
+
         nextButton.disabled = false;
         nextButton.classList.remove('disabled');
     }
@@ -71,8 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function showResult() {
         questionContainer.style.display = 'none';
         nextButton.style.display = 'none';
-        questionCounter.style.display = 'none';
-
         resultContainer.style.display = 'block';
         resultElement.textContent = `Ваш результат: ${correctAnswers} из ${questions.length}`;
     }

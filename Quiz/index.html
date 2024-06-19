@@ -8,8 +8,13 @@
 </head>
 <body>
     <div id="quiz-container">
-        <div id="question-counter"></div>
-        <div id="question-container">
+      <div id="start-container">
+        <h1>Quiz</h1>
+        <div id="all-question-counter"></div>
+        <button id="start-button">Начать</button>
+      </div>
+        <div id="question-container" style="display: none;">
+          <div id="question-counter"></div>
           <div id="question"></div>
           <div class="answers">
             <button class="answer"></button>
@@ -22,7 +27,7 @@
             <div id="result"></div>
             <button id="restart-button">Начать заново</button>
         </div>
-        <button id="next-button">Следующий вопрос</button>
+        <button id="next-button" style="display: none;">Следующий вопрос</button>
     </div>
     <script src="quizz.js"></script>
 </body>
