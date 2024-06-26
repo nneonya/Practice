@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/adaptive.css">
 </head>
 <body>
     <div id="quiz-container">
+      <button id="theme-toggle">
+        <img id="theme-icon" src="assets/moon.png" alt="Theme Icon">
+      </button>
       <div id="start-container">
-        <h1>Quiz</h1>
+        <div id="title">Quiz</div>
         <div id="all-question-counter"></div>
         <button id="start-button">Начать</button>
       </div>
         <div id="question-container" style="display: none;">
           <div id="question-counter"></div>
           <div id="question"></div>
+          <div id="multiple-answers-info"></div>
           <div class="answers">
             <button class="answer"></button>
             <button class="answer"></button>
@@ -27,8 +32,10 @@
             <div id="result"></div>
             <button id="restart-button">Начать заново</button>
         </div>
+        <button id="check-button" style="display: none;">Проверить</button>
         <button id="next-button" style="display: none;">Следующий вопрос</button>
     </div>
-    <script src="quizz.js"></script>
+    <script src="script/quiz.js"></script>
+    <script src="script/data.js"></script>
 </body>
 </html>
