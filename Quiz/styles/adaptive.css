@@ -1,0 +1,55 @@
+@media screen and (max-width: 600px) {
+    html {
+        background-size: 50%;
+    }
+
+    #question, #question-counter, #all-question-counter {
+        font-size: var(--text-size-mobile);
+    }
+
+    button {
+        font-size: var(--button-text-size-mobile);
+    }
+
+    #result {
+        font-size: var(--result-text-size-mobile);
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .answers {
+        margin-top: 10px;
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: auto;
+    }
+
+    button {
+        min-height: 50px;
+    }
+
+    #quiz-container {
+        max-width: 300px;
+        min-height: 420px;
+    }
+
+    #title {
+        margin-top: 60px;
+        font-size: var(--title-text-size-mobile);
+    }
+
+    #all-question-counter {
+        margin-top: 80px;
+    }
+
+    #start-button {
+        margin-top: 110px;
+    }
+
+    #result {
+        margin-top: 140px;
+    }
+
+    #restart-button {
+        margin-top: 120px;
+    }
+}
