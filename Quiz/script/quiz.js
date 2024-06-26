@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleButton = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
+    const timerElement = document.getElementById('timer');
+    const timeoutMessage = document.getElementById('timeout-message');
 
     allQuestionCounter.textContent = `В викторине ${questions.length} вопросов на разные темы`;
 
@@ -26,7 +28,40 @@ document.addEventListener('DOMContentLoaded', () => {
     checkButton.addEventListener('click', checkAnswer);
     restartButton.addEventListener('click', startQuiz);
     themeToggleButton.addEventListener('click', toggleTheme);
+    answerButtons.forEach(button => button.addEventListener('click', selectAnswer));
     
+    function startTimer() {
+        const questionTime = 10;
+        timerElement.textContent = `00:10`;
+        timerElement.style.display = 'block';
+        let timeLeft = questionTime;
+        let timer = setInterval(() => {
+                timerElement.textContent = `00:0${timeLeft-1}`;
+            timeLeft--;
+            if (timeLeft <= 3) {
+                timerElement.classList.add('finish');
+            }
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                timerElement.classList.remove('finish');
+                timerElement.style.display = 'none';
+                timeoutMessage.style.display = 'block';
+                questionContainer.style.display = 'none';
+                nextButton.style.display = 'none';
+                checkButton.style.display = 'none';
+                setTimeout(() => {
+                    timeoutMessage.style.display = 'none';
+                    nextQuestion(); 
+                }, 2000);
+            }
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timer);
+        timerElement.classList.remove('finish');
+    }
+
     function startQuiz() {
         currentQuestionIndex = 0;
         correctAnswers = 0;
@@ -39,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showQuestion() {
+        questionContainer.style.display = 'block';
+        nextButton.style.display = 'block';
+        checkButton.style.display = 'block';
         const currentQuestion = questions[currentQuestionIndex];
         questionElement.textContent = currentQuestion.question;
         answerButtons.forEach((button, index) => {
@@ -58,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             multipleAnswersInfo.style.display = 'none';
         }
+        startTimer();
     }
 
     function selectAnswer(event) {
@@ -100,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             button.disabled = true;
             button.classList.add('disabled');
+            stopTimer();
         });
 
         let isCorrect = selectedIndexes.length === currentQuestion.correct.length && selectedIndexes.every(index => currentQuestion.correct.includes(index));
@@ -139,6 +179,4 @@ document.addEventListener('DOMContentLoaded', () => {
             themeIcon.src = './assets/moon.png';
         }
     };
-
-    answerButtons.forEach(button => button.addEventListener('click', selectAnswer));
 });

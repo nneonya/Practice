@@ -33,9 +33,12 @@
         min-height: 420px;
     }
 
+    #timer, #timeout-message, #title {
+        font-size: var(--title-text-size-mobile);
+    }
+
     #title {
         margin-top: 60px;
-        font-size: var(--title-text-size-mobile);
     }
 
     #all-question-counter {

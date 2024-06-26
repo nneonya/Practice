@@ -8,19 +8,24 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/adaptive.css">
+    <link rel="stylesheet" href="styles/constants.css">
 </head>
 <body>
     <div id="quiz-container">
-      <button id="theme-toggle">
-        <img id="theme-icon" src="assets/moon.png" alt="Theme Icon">
-      </button>
+      <div id="top-bar">
+        <button id="theme-toggle">
+          <img id="theme-icon" src="assets/moon.png" alt="Theme Icon">
+        </button>
+        <div id="timer" style="display: none;"></div>
+        <div id="question-counter"></div>
+      </div>
+      <div id="timeout-message" style="display: none;">Время вышло!</div>
       <div id="start-container">
         <div id="title">Quiz</div>
         <div id="all-question-counter"></div>
         <button id="start-button">Начать</button>
       </div>
         <div id="question-container" style="display: none;">
-          <div id="question-counter"></div>
           <div id="question"></div>
           <div id="multiple-answers-info"></div>
           <div class="answers">

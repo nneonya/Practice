@@ -1,0 +1,54 @@
+:root {
+   
+    --main-bg-color: rgb(226, 208, 241);
+    --main-border:1px solid rgb(128, 101, 149);
+    --main-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    --main-text-color: rgb(44, 30, 54);
+
+    --main-button-bg-color: rgb(147, 86, 193);
+    --main-button-border:1px solid rgb(69, 54, 80);
+    --main-button-hover: rgba(147, 86, 193, 0.784); 
+    
+    --answer-color: rgb(204, 173, 228);
+    --answer-border: 1px solid rgb(128, 101, 149);
+    --button-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+
+    --answer-hover: rgb(204, 173, 228, 0.589); 
+    --answer-disabled-text-color: rgba(128, 116, 137, 0.978);
+
+    --answer-correct: rgb(82, 230, 82);
+    --answer-incorrect: rgb(246, 65, 65);
+
+    --correct-text-color: rgb(44, 30, 54);
+    --selected-border: 4px solid rgb(115, 81, 142);
+
+    --text-size: 22px;
+    --text-size-mobile: 18px;
+
+    --title-text-size: 40px;
+    --title-text-size-mobile: 32px;
+
+    --result-text-size: 32px;
+    --result-text-size-mobile: 24px;
+
+    --button-text-size: 15px;
+    --button-text-size-mobile: 13px;
+}
+
+  body.dark-theme {
+    --main-bg-color: rgb(33, 33, 33);
+    --main-border: 1px solid rgb(85, 85, 85);
+    --main-text-color: rgb(210, 210, 210);
+
+    --main-button-bg-color: rgb(85, 85, 85);
+    --main-button-border: 1px solid rgb(54, 54, 54);
+    --main-button-hover: rgba(85, 85, 85, 0.784);
+    
+    --answer-color: rgb(128, 128, 128);
+    --answer-border: 1px solid rgb(85, 85, 85);
+    --answer-hover: rgba(128, 128, 128, 0.589);
+    --answer-disabled-text-color: rgba(160, 160, 160, 0.978);
+
+    --correct-text-color: rgb(44, 30, 54);
+    --selected-border: 4px solid rgb(225, 224, 224);
+} 
