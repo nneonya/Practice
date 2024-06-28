@@ -30,12 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggleButton.addEventListener('click', toggleTheme);
     answerButtons.forEach(button => button.addEventListener('click', selectAnswer));
     
+    let timer;
+    const questionTime = 10;
+
     function startTimer() {
-        const questionTime = 10;
-        timerElement.textContent = `00:10`;
+        clearInterval(timer);
         timerElement.style.display = 'block';
         let timeLeft = questionTime;
-        let timer = setInterval(() => {
+        timerElement.textContent = `00:10`;
+        timer = setInterval(() => {
                 timerElement.textContent = `00:0${timeLeft-1}`;
             timeLeft--;
             if (timeLeft <= 3) {
