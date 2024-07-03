@@ -38,14 +38,14 @@
   body.dark-theme {
     --main-bg-color: rgb(33, 33, 33);
     --main-border: 1px solid rgb(85, 85, 85);
-    --main-text-color: rgb(210, 210, 210);
+    --main-text-color: rgb(238, 236, 236);
 
     --main-button-bg-color: rgb(85, 85, 85);
-    --main-button-border: 1px solid rgb(54, 54, 54);
+    --main-button-border: 1px solid rgb(0, 0, 0);
     --main-button-hover: rgba(85, 85, 85, 0.784);
     
     --answer-color: rgb(128, 128, 128);
-    --answer-border: 1px solid rgb(85, 85, 85);
+    --answer-border: 1px solid rgb(0, 0, 0);
     --answer-hover: rgba(128, 128, 128, 0.589);
     --answer-disabled-text-color: rgba(160, 160, 160, 0.978);
 

@@ -39,8 +39,17 @@
             <div id="result"></div>
             <button id="restart-button">Начать заново</button>
         </div>
-        <button id="check-button" style="display: none;">Проверить</button>
-        <button id="next-button" style="display: none;">Следующий вопрос</button>
+        <div id="bottom-bar">
+          <button id="hint-button" style="display: none;">  
+            <img id="hint-icon" src="assets/hint.png" alt="Hint">
+            <span id="hint-text" class="button-text"></span>
+          </button>   
+          <button id="check-button" style="display: none;">Проверить</button>
+          <button id="next-button" style="display: none;">
+            <img id="arrow" src="assets/arrow.png" alt="Next button">
+          </button>
+        </div>
+        <div id="hint-info" style="display: none;">*Используйте подсказку, чтобы исключить один неправильный ответ.</div>
     </div>
     <script src="script/quiz.js"></script>
     <script src="script/data.js"></script>

@@ -3,6 +3,10 @@
         background-size: 50%;
     }
 
+    #quiz-container {
+        margin-top: 40px;
+    }
+
     #question, #question-counter, #all-question-counter {
         font-size: var(--text-size-mobile);
     }
@@ -11,6 +15,11 @@
         font-size: var(--button-text-size-mobile);
     }
 
+    #check-button{
+        width: 150px; 
+
+   }
+
     #result {
         font-size: var(--result-text-size-mobile);
     }
@@ -18,7 +27,6 @@
 
 @media screen and (max-width: 450px) {
     .answers {
-        margin-top: 10px;
         grid-template-columns: repeat(1, 1fr);
         grid-auto-rows: auto;
     }
@@ -30,11 +38,31 @@
     #quiz-container {
         margin-top: 20px;
         max-width: 300px;
-        min-height: 420px;
+        min-height: 580px;
+    }
+
+    #question {
+        height: 50px;
+    }
+
+    #top-bar{
+        margin-top: 0;
+    }
+
+    #multiple-answers-info {
+        max-width: 290px;
     }
 
     #timer, #timeout-message, #title {
         font-size: var(--title-text-size-mobile);
+    }
+
+    #multiple-answers-info, #hint-info{
+        font-size: var(--button-text-size-mobile);
+    }
+
+    #timeout-message {
+        margin-top: 190px;
     }
 
     #title {
@@ -44,6 +72,26 @@
     #all-question-counter {
         margin-top: 80px;
     }
+
+    #check-button{
+        margin-top: 20px;
+        min-height: 50px;
+        padding: 10px;
+        width: 228px;
+    }
+
+    #bottom-bar{
+        min-width: 120px;
+    }
+
+    #next-button,  #hint-button {
+        display: block;
+        margin: 80px 10px 0;
+        min-width: 100px;
+        width: 100%;
+       
+    }
+
 
     #start-button {
         margin-top: 110px;

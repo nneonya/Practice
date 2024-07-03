@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const timerElement = document.getElementById('timer');
     const timeoutMessage = document.getElementById('timeout-message');
+    const hintButton = document.getElementById('hint-button');
+    const hintInfo = document.getElementById('hint-info');
+    
 
     allQuestionCounter.textContent = `В викторине ${questions.length} вопросов на разные темы`;
 
@@ -29,7 +32,53 @@ document.addEventListener('DOMContentLoaded', () => {
     restartButton.addEventListener('click', startQuiz);
     themeToggleButton.addEventListener('click', toggleTheme);
     answerButtons.forEach(button => button.addEventListener('click', selectAnswer));
-    
+    hintButton.addEventListener('click', useHint);
+
+    function startQuiz() {
+        currentQuestionIndex = 0;
+        correctAnswers = 0;
+        hintsAvailable = 3;
+        startContainer.style.display = 'none';
+        resultContainer.style.display = 'none';
+        showQuestion();
+        updateHintButton();
+    }
+
+    function showQuestion() {
+        questionContainer.style.display = 'block';
+        nextButton.style.display = 'block';
+        checkButton.style.display = 'block';
+        hintButton.style.display = 'block';
+        hintInfo.style.display = 'block';
+        const currentQuestion = questions[currentQuestionIndex];
+        questionElement.textContent = currentQuestion.question;
+        answerButtons.forEach((button, index) => {
+            button.textContent = currentQuestion.answers[index];
+            button.classList.remove('correct', 'incorrect', 'selected', 'disabled');
+            button.disabled = false;
+        });
+        questionCounter.textContent = `${currentQuestionIndex + 1}/${questions.length}`;
+        checkButton.disabled = true;
+        checkButton.classList.add('disabled');
+        nextButton.disabled = true;
+        nextButton.classList.add('disabled');
+
+        if (currentQuestion.correct.length > 1) {
+            multipleAnswersInfo.textContent = "В этом вопросе несколько правильных ответов. \n Выберите все правильные варианты.";
+            multipleAnswersInfo.classList.add('visible');
+        } else {
+            multipleAnswersInfo.classList.remove('visible');
+        }
+
+        if (hintsAvailable  > 0){
+            hintButton.disabled = false;
+            hintButton.classList.remove('disabled');
+        }
+
+        startTimer();
+        updateHintButton();
+    }
+
     let timer;
     const questionTime = 10;
 
@@ -52,6 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 questionContainer.style.display = 'none';
                 nextButton.style.display = 'none';
                 checkButton.style.display = 'none';
+                hintButton.style.display = 'none';
+                hintInfo.style.display = 'none';
                 setTimeout(() => {
                     timeoutMessage.style.display = 'none';
                     nextQuestion(); 
@@ -65,42 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         timerElement.classList.remove('finish');
     }
 
-    function startQuiz() {
-        currentQuestionIndex = 0;
-        correctAnswers = 0;
-        questionContainer.style.display = 'block';
-        nextButton.style.display = 'block';
-        checkButton.style.display = 'block';
-        startContainer.style.display = 'none';
-        resultContainer.style.display = 'none';
-        showQuestion();
-    }
-
-    function showQuestion() {
-        questionContainer.style.display = 'block';
-        nextButton.style.display = 'block';
-        checkButton.style.display = 'block';
-        const currentQuestion = questions[currentQuestionIndex];
-        questionElement.textContent = currentQuestion.question;
-        answerButtons.forEach((button, index) => {
-            button.textContent = currentQuestion.answers[index];
-            button.classList.remove('correct', 'incorrect', 'selected', 'disabled');
-            button.disabled = false;
-        });
-        questionCounter.textContent = `${currentQuestionIndex + 1}/${questions.length}`;
-        checkButton.disabled = true;
-        checkButton.classList.add('disabled');
-        nextButton.disabled = true;
-        nextButton.classList.add('disabled');
-
-        if (currentQuestion.correct.length > 1) {
-            multipleAnswersInfo.textContent = "В этом вопросе несколько правильных ответов. \n Выберите все правильные варианты.";
-            multipleAnswersInfo.style.display = 'block';
-        } else {
-            multipleAnswersInfo.style.display = 'none';
-        }
-        startTimer();
-    }
 
     function selectAnswer(event) {
         const selectedButton = event.target;
@@ -155,6 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
         checkButton.classList.add('disabled');
         nextButton.disabled = false;
         nextButton.classList.remove('disabled');
+        hintButton.disabled = true; 
+        hintButton.classList.add('disabled');
     }
 
     function nextQuestion() {
@@ -167,9 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showResult() {
+        timerElement.style.display = 'none';
         questionContainer.style.display = 'none';
         checkButton.style.display = 'none';
         nextButton.style.display = 'none';
+        hintButton.style.display = 'none';
+        hintInfo.style.display = 'none';
         resultContainer.style.display = 'block';
         resultElement.textContent = `Ваш результат: ${correctAnswers} из ${questions.length}`;
     }
@@ -181,5 +201,55 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             themeIcon.src = './assets/moon.png';
         }
+        hintIcon
+
     };
+
+    function useHint() {
+            hintsAvailable--;
+            provideHint();
+            updateHintButton();
+    }
+    
+    function provideHint() {
+        const currentQuestion = questions[currentQuestionIndex];
+        const incorrectAnswers = [];
+    
+        answerButtons.forEach((button, index) => {
+            if (!currentQuestion.correct.includes(index) && !button.disabled) {
+                incorrectAnswers.push(button);
+            }
+        });
+    
+        const randomIndex = Math.floor(Math.random() * incorrectAnswers.length);
+        const button = incorrectAnswers[randomIndex];
+        button.disabled = true;
+        button.classList.add('disabled');
+        
+        if (button.classList.contains('selected')) {
+            button.classList.remove('selected');
+    }
+
+        const remainingButtons = Array.from(answerButtons).filter(button => !button.disabled);
+        if (remainingButtons.length === currentQuestion.correct.length) {
+            remainingButtons.forEach(button => {
+                button.classList.add('selected');
+            });
+            checkButton.disabled = false;
+            checkButton.classList.remove('disabled');
+            hintButton.disabled = true;
+            hintButton.classList.add('disabled');
+            checkAnswer ();
+        } 
+        updateHintButton();
+    }
+    
+    function updateHintButton() {
+        const hintButtonText = `x ${hintsAvailable}`;
+    document.getElementById('hint-text').textContent = hintButtonText;
+        if (hintsAvailable  === 0){
+           hintButton.disabled = true;
+           hintButton.classList.add('disabled');
+        }
+    }
 });
