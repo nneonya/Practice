@@ -1,4 +1,5 @@
 html {
+    background-image: url('./assets/background.avif');
     background-repeat: repeat;
     background-size: 20%;
 }  
